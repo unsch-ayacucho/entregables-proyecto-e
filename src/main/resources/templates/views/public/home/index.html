@@ -1,51 +1,44 @@
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en">
-  <head>
-    <title>Home</title>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+    <head>
+    <title th:text="${titulo}"></title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Libre+Franklin:200,300,500,600,300italic">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{/public/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/public/css/style.css}">
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
   </head>
+
+</head>
+
   <body>
     
     <!--Page-->
     <div class="page">
+    
       <div id="page-loader">
         <div class="cssload-container">
           <div class="cssload-speeding-wheel"></div>
         </div>
       </div>
-      <!--Page Header-->
-      <header class="page-header">
-        <!--RD Navbar-->
-        <div class="rd-navbar-wrap">
-          <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-device-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-stick-up-clone="false" data-sm-stick-up="true" data-md-stick-up="true" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true" data-lg-stick-up-offset="69px" data-xl-stick-up-offset="1px" data-xxl-stick-up-offset="1px">
-            <div class="rd-navbar-inner">
-              <!--RD Navbar Panel-->
-              <div class="rd-navbar-panel">
-                <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
-                <!--RD Navbar Brand-->
-                <div class="rd-navbar-brand"><a class="brand-name" href="index.html"><img src="images/logo-200x32.png" alt="" width="200" height="32"/></a></div>
-              </div>
-              <!--RD Navbar Nav-->
-              <div class="rd-navbar-nav-wrap">
-                <ul class="rd-navbar-nav">
-                  <li class="active"><a href="index.html">Home</a></li>
-                  <li><a href="concierto.html">Conciertos</a></li>
-                  <li><a href="nosotros.html">Nosotros</a></li>
-                  <li><a href="contacts.html">Contacto</a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
+      
+     <!-- *** TOPBAR Y NAVBAR ***
+ _________________________________________________________ -->
+	
+	<div th:fragment="header">
+		<div th:replace="views/public/layout/header"></div>
+	</div>
+	
+    <!-- *** TOPBAR Y NAVBAR END *** -->
+    
+      
       <!--Swiper-->
       <section>
         <div class="swiper-container swiper-slider swiper-slider_fullheight" data-simulate-touch="false" data-loop="false" data-autoplay="false">
@@ -496,29 +489,19 @@
           </div>
         </div>
       </section>
-      <footer class="footer-corporate">
-        <div class="container">
-          <div class="footer-corporate__inner">
-            <p class="rights">Monstroid&#178;&nbsp;&copy; <span class="copyright-year"></span>.
-              Design&nbsp;by&nbsp;<a href="https://www.templatemonster.com">TemplateMonster</a>
-            </p>
-            <ul class="list-inline-xxs">
-              <li><a class="icon icon-xxs icon-primary fa fa-facebook" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-twitter" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-google-plus" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-vimeo" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-youtube" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-pinterest" href="#"></a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      
+      
+      <div th:fragment="footer">
+			<div th:replace="views/public/layout/footer"></div>
+		</div>
+        
+        
     </div>
     <!--Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
-    <!--Javascript-->
-    <script src="js/core.min.js" defer></script>
-    <script src="js/script.js" defer></script>
+     <div class="snackbars" id="form-output-global"></div>
+    <script th:src="@{/public/js/core.min.js}"></script>
+    <script th:src="@{/public/js/script.js}"></script>
     <!--coded by ATOM-->
   </body>
 </html>
