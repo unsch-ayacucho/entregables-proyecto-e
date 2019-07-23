@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pe.edu.unsch.service.EntradaService;
+
 
 @Controller
 public class HomeController {
@@ -17,8 +19,12 @@ public class HomeController {
 	@GetMapping({ "/", "/home" })
 	// @RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Model model) {
-		// model.addAttribute("categories", categoryService.findAll());
+		
+		model.addAttribute("productsLatest", EntradaService.latest(3));
 		return "views/public/home/index";
+		
+		
 	}
+	
 
 }

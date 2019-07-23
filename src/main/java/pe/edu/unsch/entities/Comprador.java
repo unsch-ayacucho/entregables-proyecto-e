@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 08-jul-2019 21:50:23 by Hibernate Tools 5.3.0.Beta2
+// Generated 20-jul-2019 16:47:19 by Hibernate Tools 5.3.0.Beta2
 
 import java.util.Date;
 
@@ -25,20 +25,21 @@ public class Comprador implements java.io.Serializable {
 	public Comprador() {
 	}
 
-	public Comprador(Entrada entrada, Pago pago, String nombre, String tipodoc, String documento, Date fechanacimiento, String celular, String departamento, String provincia, String distrito, String correo, String contra) {
-       this.entrada = entrada;
-       this.pago = pago;
-       this.nombre = nombre;
-       this.tipodoc = tipodoc;
-       this.documento = documento;
-       this.fechanacimiento = fechanacimiento;
-       this.celular = celular;
-       this.departamento = departamento;
-       this.provincia = provincia;
-       this.distrito = distrito;
-       this.correo = correo;
-       this.contra = contra;
-    }
+	public Comprador(Entrada entrada, Pago pago, String nombre, String tipodoc, String documento, Date fechanacimiento,
+			String celular, String departamento, String provincia, String distrito, String correo, String contra) {
+		this.entrada = entrada;
+		this.pago = pago;
+		this.nombre = nombre;
+		this.tipodoc = tipodoc;
+		this.documento = documento;
+		this.fechanacimiento = fechanacimiento;
+		this.celular = celular;
+		this.departamento = departamento;
+		this.provincia = provincia;
+		this.distrito = distrito;
+		this.correo = correo;
+		this.contra = contra;
+	}
 
 	public Integer getIdcomprador() {
 		return this.idcomprador;
@@ -137,14 +138,11 @@ public class Comprador implements java.io.Serializable {
 	}
 
 	public String getContra() {
-        return this.contra;
-    }
+		return this.contra;
+	}
 
 	public void setContra(String contra) {
-        this.contra = contra;
-    }
-
-
-
+		this.contra = contra;
+	}
 
 }
