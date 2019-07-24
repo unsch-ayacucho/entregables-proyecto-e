@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +18,25 @@ import pe.edu.unsch.entities.Account;
 import pe.edu.unsch.entities.Item;
 import pe.edu.unsch.entities.Orders;
 import pe.edu.unsch.entities.Ordersdetail;
+import pe.edu.unsch.service.AccountService;
 import pe.edu.unsch.service.EntradaService;
+import pe.edu.unsch.service.OrdersDetailService;
+import pe.edu.unsch.service.OrdersService;
 
 
 @Controller
 @RequestMapping("/home")
 public class BasketController {
+	
+	@Autowired
+	private EntradaService entradService;
+	
+	@Autowired
+	private AccountService accountService;
+	@Autowired
+	private OrdersService ordersService;
+	@Autowired
+	private OrdersDetailService ordersDetailService;
 	
 	@GetMapping
 	public String basket(Model model) {
@@ -36,14 +50,14 @@ public class BasketController {
 		
 		if (session.getAttribute("cart") == null) {
 			List<Item> cart = new ArrayList<Item>();
-			cart.add(new Item(entradaService.find(id), 1));
+			cart.add(new Item(entradService.find(id), 1));
 			session.setAttribute("cart", cart);
 		} else {
 			List<Item> cart = (List<Item>) session.getAttribute("cart");
 			int index = isEXists(id, session);
 			
 			if(index == -1) {
-				cart.add(new Item(EntradaService.find(id), 1));
+				cart.add(new Item(entradService.find(id), 1));
 			} else {
 				int quantity = cart.get(index).getQuantity() + 1;
 				cart.get(index).setQuantity(quantity);
@@ -107,7 +121,7 @@ public class BasketController {
 				ordersdetail.setOrders(newOrder);
 				ordersdetail.setEntrada(item.getEntrada());
 
-				ordersdetail.setPrice(item.getEntrada().getPrice());
+				ordersdetail.setPrice(item.getEntrada().getPrecio());
 
 				ordersdetail.setQuantity(item.getQuantity());
 				ordersDetailService.create(ordersdetail);

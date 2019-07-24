@@ -20,7 +20,7 @@ public class HomeController {
 	// @RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Model model) {
 		
-		model.addAttribute("productsLatest", EntradaService.latest(3));
+		
 		return "views/public/home/index";
 		
 		

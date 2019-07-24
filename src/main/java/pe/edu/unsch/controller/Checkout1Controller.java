@@ -40,6 +40,9 @@ public class Checkout1Controller {
 	@Autowired
 	private OrdersDetailService ordersDetailService;
 	
+	@Autowired
+	private EntradaService entradService;
+	
 	@GetMapping
 	public String checkout1(Model model) {
 		model.addAttribute("titulo", "Cart : e-commerce");
@@ -60,9 +63,9 @@ public class Checkout1Controller {
 			int index = isEXists(id, session);
 			
 			if(index == -1) {
-				cart.add(new Item(entradaService.find(id), 1));
+				cart.add(new Item(entradService.find(id), 1));
 			} else {
-				int quantity = cart.get(checkout1).getQuantity() + 1;
+				int quantity = cart.get(index).getQuantity() + 1;
 				cart.get(index).setQuantity(quantity);
 				session.setAttribute("checkout1", cart); 
 			}
@@ -76,7 +79,7 @@ public class Checkout1Controller {
 	public String delete(@PathVariable("index") int index, HttpSession session) {
 		List<Item> cart = (List<Item>) session.getAttribute("checkout1");
 		cart.remove(index);
-		session.setAttribute("checkout1", checkout1);
+		session.setAttribute("checkout1", cart);
 		return "redirect:/checkout1";
 	}
 
@@ -84,7 +87,7 @@ public class Checkout1Controller {
 		List<Item> checkout1 = (List<Item>) session.getAttribute("checkout1");
 		
 		for (int i = 0; i < checkout1.size(); i++) {
-			if (checkout1.get(i).getProduct().getIdentrada() == id) {
+			if (checkout1.get(i).getEntrada().getIdentrada() == id) {
 				return i;
 			}
 		}
@@ -116,15 +119,15 @@ public class Checkout1Controller {
 	
 			List<Item> cart = (List<Item>) session.getAttribute("checkout1");
 
-			for (Item item : checkout1) {
+			for (Item item : cart) {
 				
 				System.out.println("Orders detail " + newOrder.getIdorders());
 
 				Ordersdetail ordersdetail = new Ordersdetail();
 				ordersdetail.setOrders(newOrder);
-				ordersdetail.setProduct(item.getProduct());
+				ordersdetail.setEntrada(item.getEntrada());
 
-				ordersdetail.setPrice(item.getProduct().getPrice());
+			
 
 				ordersdetail.setQuantity(item.getQuantity());
 				ordersDetailService.create(ordersdetail);

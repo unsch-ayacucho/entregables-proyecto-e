@@ -19,13 +19,13 @@ public class Ordersdetail implements java.io.Serializable {
 	private Integer idordersdetail;
 	private Orders orders;
 	private Entrada entrada;
-	private BigDecimal price;
+	private long price;
 	private int quantity;
 
 	public Ordersdetail() {
 	}
 
-	public Ordersdetail(Orders orders, Entrada entrada, BigDecimal price, int quantity) {
+	public Ordersdetail(Orders orders, Entrada entrada, long price, int quantity) {
 		this.orders = orders;
 		this.entrada = entrada;
 		this.price = price;
@@ -60,16 +60,16 @@ public class Ordersdetail implements java.io.Serializable {
 		return this.entrada;
 	}
 
-	public void setProduct(Entrada entrada) {
+	public void setEntrada(Entrada entrada) {
 		this.entrada = entrada;
 	}
 
 	@Column(name = "price", nullable = false, precision = 18)
-	public BigDecimal getPrice() {
+	public long getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 

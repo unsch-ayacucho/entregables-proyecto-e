@@ -15,10 +15,10 @@ public class Item {
 		this.quantity = quantity;
 	}
 	
-	public Entrada getProduct() {
+	public Entrada getEntrada() {
 		return entrada;
 	}
-	public void setProduct(Entrada entrada) {
+	public void setEntrada(Entrada entrada) {
 		this.entrada = entrada;
 	}
 	public int getQuantity() {
